@@ -1,0 +1,17 @@
+{
+  "date_committed": "2026-09-21",
+  "supersedes": "PREREGISTRATION_forgery.json and PREREGISTRATION_control_v2.json (both control attempts failed absolute gates; diagnosis: run-to-run drift and transpilation-layout variance at low contrast dominate absolute thresholds)",
+  "design_rationale": "Both arms (non-normal CTC ansatz + normal control ansatz) run as 16 pubs in ONE job: one calibration snapshot, identical pinned initial layout [53,54,55] (the qubits of the confirmed v2 run) and fixed transpiler seed 42. Common drift cancels in paired ratio statistics. The control ansatz is re-optimized: exactly normal (3e-13) with single-potential contrast 1.318 (vs 0.862 in v1/v2 controls) for variance-explained headroom.",
+  "calibration_disclosure": "Ratio gates are calibrated from the historical cross-session values (R_D 3.4 and 4.4; R_A 1.85 and 4.1) and set below both; CTC-arm structure gates repeat v2's. Tested on fresh data.",
+  "experiment": "16 pubs x 20k shots, ONE job, ibm_marrakesh, layout [53,54,55], seed_transpiler 42",
+  "runner": "hardware/run_paired.py hardware ibm_marrakesh (unmodified)",
+  "analysis_script": "hardware/analyze_paired.py, unmodified (gates embedded there must match)",
+  "ctrl_params": [4.904035, 0.646883, 0.516469, 1.555524, 4.679263, 5.049346, 3.141593, 5.493009, 0.646883, 3.64783, 3.141593, 3.633187],
+  "predictions_ideal": {"ctrl_max_Dii": 2.5e-13, "ctrl_contrast": 1.318, "ctrl_acceptance": [0.781, 0.781, 0.209, 0.209], "sim_20k": {"R_D": 58.3, "R_A": 20.1}},
+  "decision_criteria": {
+    "confirmed": "ALL of: 16/16 cells both arms; R_D = max|D_ii|(ctc)/max|D_ii|(control) >= 3.0; R_A = antisym(ctc)/antisym(control) >= 1.5; CTC arm VE >= 0.90 AND r(D,D_th) >= 0.95",
+    "not_confirmed": "any gate missed - report prominently, no reinterpretation",
+    "secondary_reported_nongating": "control-arm single-potential VE, max|D_ii|, antisymmetry, r vs predicted v_j - v_i"
+  },
+  "no_post_hoc_changes": "Any deviation from this plan is exploratory and must be labelled so."
+}

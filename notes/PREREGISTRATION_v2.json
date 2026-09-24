@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "date_committed": "2026-09-20",
+  "supersedes": "PREREGISTRATION.json (v1; executed 2026-09-20, job dao3sfo2fm4c73f4tkmg, outcome INCONCLUSIVE per its criteria)",
+  "calibration_disclosure": "All thresholds below are calibrated from the two completed hardware runs (2026-08-01 salvaged shallow dataset, 12/16 cells; 2026-09-20 v1 run, 16/16 cells) and are therefore NOT independent of this device's measured behavior. What v2 tests on fresh data: stability of the factorization structure, its match to the theory-specific potentials, and replication on a second device. v1's misses are diagnosed in notes/audit-2026-09.md: a mis-modeled z-statistic, a magnitude gate on the lowest-power component, a fragile max-statistic gate, and thresholds derived from an idealized depolarizing model rather than measured device attenuation.",
+  "experiment": {
+    "circuit": "shallow_4cx, ansatz_params identical to v1 (below)",
+    "shots_per_input": 20000,
+    "submission": "all 8 circuits as ONE job per arm",
+    "arm_primary": "ibm_marrakesh (decides the verdict)",
+    "arm_replication": "ibm_fez (secondary: device-independence; does not gate the primary verdict)",
+    "runner": "hardware/run_prereg.py hardware <backend> (unmodified)",
+    "budget_estimate_seconds": "~45 per arm measured precedent; <= 120 total; abort replication arm if window balance < 200 s"
+  },
+  "analysis_script": "hardware/analyze_v2.py, unmodified (thresholds embedded there must match this file)",
+  "statistics_corrections_locked": [
+    "biased past: delta-method errors from binomial acceptances; model-free acceptance-uniformity chi-square (3 dof); attenuation coefficient of acceptance contrast vs theory with delta-method sigma",
+    "factorization: gates on variance explained (weighted fit, variance around mean over used cells), correlation with predicted D matrix, and fitted-vs-predicted potentials (gauge fixed on constrained u components; unconstrained potentials excluded); the max-residual ratio is reported but does not gate"
+  ],
+  "ansatz_params": [2.774141, 1.438552, 5.364134, 1.634255, 2.682839, 4.893008,
+                    1.171051, 1.459015, 1.474151, 0.03124, 3.189096, 2.607931],
+  "decision_criteria": {
+    "factorization_confirmed": "ALL of: 16/16 cells usable; VE >= 0.90; r(D, D_th) >= 0.95; max|u_fit - u_th| <= 0.25; max|v_fit - v_th| <= 0.15",
+    "factorization_refuted": "VE <= 0.60 OR r(D, D_th) <= 0.60",
+    "inconclusive": "between thresholds, or < 16 usable cells - report as such; do not reinterpret",
+    "biased_past_confirmed": "ALL of: acceptance-uniformity chi2(3) >= 30; attenuation >= 0.35; attenuation significance >= 5 sigma",
+    "replication_secondary": "on ibm_fez: same factorization criteria (reported separately); cross-device r(D_marrakesh, D_fez) >= 0.95. Secondary only - informs the single-device limitation, never upgrades an inconclusive primary."
+  },
+  "calibrated_expectations": {
+    "VE": "0.971 and 0.979 measured on runs 1-2",
+    "r_D_theory": "0.985 and 0.987",
+    "u_err_full_matrix": 0.074,
+    "v_err_full_matrix": 0.056,
+    "attenuation": "0.718 +/- 0.039 and 0.693 measured",
+    "bp_chi2": "354 (20k shots) and 1668 (100k shots)",
+    "ratio_nongating": "0.35-0.40 device-systematic floor; shot-noise floor 0.04 at 20k"
+  },
+  "no_post_hoc_changes": "Any deviation from this plan is exploratory and must be labelled so. If the replication arm cannot run (queue, quota), the primary verdict stands and the device-independence question remains open."
+}

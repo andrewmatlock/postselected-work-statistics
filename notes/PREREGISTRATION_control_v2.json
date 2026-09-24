@@ -1,0 +1,13 @@
+{
+  "date_committed": "2026-09-20",
+  "supersedes": "PREREGISTRATION_forgery.json (v1 control: 2/3 gates passed; antisymmetry 0.332 vs <=0.30 missed by 0.03 - sim-derived margin under-absorbed device systematics)",
+  "calibration_disclosure": "Thresholds below are calibrated from the v1 control run and the CTC-circuit class values measured on the same device, set near the geometric midpoints of the measured class gap (control 0.231/0.332 vs CTC 1.02/1.37). They are tested on a FRESH run. The confirmatory content is class membership under a gate the class gap comfortably brackets, not proximity to the noiseless ideal.",
+  "experiment": "forgery_normal_4cx, identical to v1 control: 20k shots/input, all 8 circuits ONE job, ibm_marrakesh",
+  "runner": "hardware/run_forgery.py hardware ibm_marrakesh (unmodified)",
+  "analysis_script": "hardware/analyze_forgery_v2.py, unmodified",
+  "decision_criteria": {
+    "control_confirmed": "single-potential VE >= 0.90 AND max|D_ii| <= 0.45 AND antisymmetry ratio <= 0.65",
+    "control_failed": "any criterion missed - report prominently; a failure undermines the two-potential signature's hardware interpretation"
+  },
+  "no_post_hoc_changes": "Any deviation from this plan is exploratory and must be labelled so."
+}

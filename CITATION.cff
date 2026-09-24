@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper below."
+title: "Work statistics of post-selected quantum dynamics: reproducibility package"
+authors:
+  - family-names: Matlock
+    given-names: Andrew
+year: 2026
+license: MIT
+preferred-citation:
+  type: article
+  title: "Work statistics of post-selected quantum dynamics: exact two-potential structure, an attribution no-go theorem, and pre-registered tests on quantum hardware"
+  authors:
+    - family-names: Matlock
+      given-names: Andrew
+  year: 2026
+  notes: "arXiv identifier to be added on posting"

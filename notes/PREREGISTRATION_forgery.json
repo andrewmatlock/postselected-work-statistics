@@ -1,0 +1,17 @@
+{
+  "date_committed": "2026-09-20",
+  "purpose": "Negative control for the two-potential signature (note Sec. 4 taxonomy). Same 4-CX ansatz family, parameters chosen so the heralded block is NORMAL (normality residual ~1e-12): predicted single-potential class, D antisymmetric, D_ii = 0, despite deviations of the same scale as the CTC circuit (v-span 0.862). If device noise generically produced two-potential structure, it would appear here; its absence certifies that the CTC circuit's D_ii != 0 is physics, not artifact.",
+  "experiment": "forgery_normal_4cx; 20k shots/input; all 8 circuits ONE job; ibm_marrakesh (same device as the CTC-circuit confirmation)",
+  "runner": "hardware/run_forgery.py hardware ibm_marrakesh (unmodified)",
+  "analysis_script": "hardware/analyze_forgery.py, unmodified",
+  "ansatz_params": [0.664318, 4.528296, 2.612652, 1.285941, 2.099737, 3.013701,
+                    1.345209, 2.715569, 4.528296, 6.044891, 3.141593, 4.712389],
+  "predicted": {"acceptance": [0.289, 0.685, 0.320, 0.593], "v_span": 0.862,
+                "max_Dii_ideal": 4e-12, "min_cell_prob": 0.081,
+                "sim_20k": {"VE1": 0.998, "max_Dii": 0.031, "antisymmetry": 0.071}},
+  "decision_criteria": {
+    "control_confirmed": "single-potential VE >= 0.90 AND max|D_ii| <= 0.30 AND antisymmetry ratio <= 0.30",
+    "control_failed": "any criterion missed - report as such; a failure would UNDERMINE the two-potential signature's hardware interpretation and must be reported prominently, not buried"
+  },
+  "no_post_hoc_changes": "Any deviation from this plan is exploratory and must be labelled so."
+}
