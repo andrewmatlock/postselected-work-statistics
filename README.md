@@ -1,10 +1,11 @@
 # Work statistics of post-selected quantum dynamics
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22966846.svg)](https://doi.org/10.5281/zenodo.22966846)
 
 Reproducibility package for:
 
 > **"Work statistics of post-selected quantum dynamics: exact two-potential
 > structure, an attribution no-go theorem, and pre-registered tests on quantum
-> hardware"** — Andrew Matlock (2026). *Preprint; arXiv link to be added.*
+> hardware"** — Andrew Matlock (2026). *Preprint; arXiv link to be added. Archived snapshot: [doi:10.5281/zenodo.22966846](https://doi.org/10.5281/zenodo.22966846)*
 
 Post-selection reshapes accepted-run two-point-measurement work statistics in
 an exact way: the pairwise Crooks deviations factorize as D_ij = u_j − v_i

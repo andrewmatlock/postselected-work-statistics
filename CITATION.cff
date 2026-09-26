@@ -6,6 +6,11 @@ authors:
     given-names: Andrew
 year: 2026
 license: MIT
+doi: 10.5281/zenodo.22966846
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22966846
+    description: Concept DOI (all versions) of the archived package
 preferred-citation:
   type: article
   title: "Work statistics of post-selected quantum dynamics: exact two-potential structure, an attribution no-go theorem, and pre-registered tests on quantum hardware"
