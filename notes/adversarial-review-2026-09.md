@@ -52,7 +52,10 @@ Horowitz-Maldacena citation was added at the final-state-projection mention.
    nearest structural kin (arrow-of-time lineage) found and cited. Residual risk
    is temporal only (future postings) and is handled by weekly monitoring of the anchor citation feeds plus the arXiv v2 mechanism.
 3. No independent human domain expert has reviewed the manuscript. Adversarial
-   AI passes reduce risk; they do not substitute for one.
+   AI passes reduce risk; they do not substitute for one. (2026-09-26: the
+   author, informed of this risk, elected to proceed to submission without
+   prior expert outreach; the risk transfers to arXiv moderation and eventual
+   journal peer review, which is a legitimate — if less protected — path.)
 4. Closed 2026-09-21: the Deutsch–Lloyd separation is now proven analytically
    for an explicit circuit (cycle invariant ln(5/3), exact, unique fixed points)
    under BOTH mixed-input conventions (exp9_deutsch_analytic.py; paper Sec. VI).
