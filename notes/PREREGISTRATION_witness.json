@@ -1,0 +1,20 @@
+{
+  "date_committed": "2026-10-26",
+  "program": "Spin-off A: the forward/reverse pair-residual as a noise spectrometer",
+  "claim_under_test": "The separability residual of a heralded forward/reverse pair distinguishes noise by how it transforms under circuit inversion: it is blind to inversion-covariant miscalibration (which realizes a different operator, preserving the two-potential ledger with potentials that track the parameter-free shifted prediction), and responds to fresh coherent mismatch and to genuine stochastic noise, with responses matching precomputed magnitudes. Design note recorded honestly: the original roadmap framing ('separates incoherent from coherent') was refined during design -- a symmetric +/-eps unitary mixture is protected by first-order cancellation and its inverse-circuit set coincides with its adjoint channel (the adjoint-renormalization artifact of the paper's Sec. V), so the correct stochastic proxy is an exact Pauli-mixture depolarizing channel.",
+  "experiment": "Four arms, ONE job, ibm_marrakesh, layout [53,54,55], seed_transpiler 42, 20k shot-equivalents/input: B baseline (8 pubs); C1 covariant miscalibration eps=0.3 on ansatz param 4, both directions (8 pubs); C2 fresh ry(0.35) on ancilla pre-4th-CX, forward only (4 pubs, reverse reuses B); I exact depolarizing q=0.4 at same site via Pauli mixture {I,X,Y,Z} with shot weights {0.7,0.1,0.1,0.1}, forward only (16 pubs). 36 pubs, ~480k shots total.",
+  "runner": "hardware/run_witness.py (unmodified)",
+  "analysis_script": "hardware/analyze_witness.py, unmodified (gates embedded there must match)",
+  "predictions": {
+    "ideal_math": {"C1_VE": 1.0, "C1_tracking": "D -> D_th(C') to 1e-15, max shift 0.45",
+                   "C2_VE_drop": 0.105, "I_VE_drop": 0.048},
+    "sim_20k_sampled": {"B_VE": 0.999, "C1_VE": 1.000, "C1_r_shift": 0.9997,
+                        "C2_VE_drop": 0.154, "I_VE_drop": 0.071}
+  },
+  "decision_criteria": {
+    "confirmed": "ALL of: 16/16 cells all arms; VE_B >= 0.90; VE_C1 >= VE_B - 0.02; r(D_C1, D_th(C')) > r(D_C1, D_th(C)); VE_B - VE_C2 >= 0.05; VE_B - VE_I >= 0.02",
+    "not_confirmed": "any gate missed - report prominently, no reinterpretation"
+  },
+  "timestamp_note": "This registration is pushed to the PUBLIC repository (github.com/andrewmatlock/postselected-work-statistics) BEFORE the hardware run, making its timestamp third-party verifiable -- the first registration of this program with that property, per the roadmap commitment.",
+  "no_post_hoc_changes": "Any deviation from this plan is exploratory and must be labelled so."
+}
