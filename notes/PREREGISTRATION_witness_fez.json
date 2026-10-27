@@ -1,0 +1,23 @@
+{
+  "date_committed": "2026-10-26",
+  "program": "Spin-off A: the forward/reverse pair-residual as a noise spectrometer -- CROSS-DEVICE REPLICATION",
+  "relation_to_primary": "Identical design to PREREGISTRATION_witness.json (sha256 379ccbf2...), re-run on a second device. Registered and submitted while the primary ibm_marrakesh job (dbfp6h8m94ac738u2pvg) is still QUEUED behind a maintenance backlog -- i.e. BLIND to the primary outcome. Both runs will be reported regardless of either outcome.",
+  "claim_under_test": "Same as primary: the pair-residual is blind to inversion-covariant miscalibration (ledger intact, potentials track the parameter-free shifted prediction) and responds to fresh coherent mismatch and to genuine stochastic noise by precomputed amounts -- now required to hold on a second, independently calibrated processor.",
+  "experiment": "Four arms, ONE job, ibm_fez, layout [141,142,143] (the layout of the prior out-of-sample fez arm), seed_transpiler 42, 20k shot-equivalents/input: B baseline (8 pubs); C1 covariant miscalibration eps=0.3 on ansatz param 4, both directions (8 pubs); C2 fresh ry(0.35) on ancilla pre-4th-CX, forward only (4 pubs, reverse reuses B); I exact depolarizing q=0.4 at same site via Pauli mixture {I,X,Y,Z} with shot weights {0.7,0.1,0.1,0.1}, forward only (16 pubs). 36 pubs, ~480k shots total.",
+  "runner": "hardware/run_witness_fez.py (byte-identical to run_witness.py except LAYOUT=[141,142,143], default backend ibm_fez, output filename)",
+  "analysis_script": "hardware/analyze_witness.py, unmodified (same frozen gates)",
+  "predictions": {
+    "ideal_math": {"C1_VE": 1.0, "C1_tracking": "D -> D_th(C') to 1e-15, max shift 0.45",
+                   "C2_VE_drop": 0.105, "I_VE_drop": 0.048},
+    "sim_20k_sampled": {"B_VE": 0.999, "C1_VE": 1.000, "C1_r_shift": 0.9997,
+                        "C2_VE_drop": 0.154, "I_VE_drop": 0.071}
+  },
+  "decision_criteria": {
+    "confirmed": "ALL of: 16/16 cells all arms; VE_B >= 0.90; VE_C1 >= VE_B - 0.02; r(D_C1, D_th(C')) > r(D_C1, D_th(C)); VE_B - VE_C2 >= 0.05; VE_B - VE_I >= 0.02",
+    "not_confirmed": "any gate missed - report prominently, no reinterpretation",
+    "joint_reporting": "The two devices are scored independently against the same gates; a pass on one and a miss on the other is reported as exactly that, not averaged away."
+  },
+  "budget_note": "Estimated ~130-150 QPU-seconds per device (calibrated from the paired job: 320k shots = 88 s). Both runs together fit well within the 600 s Open-plan window.",
+  "timestamp_note": "Pushed to the PUBLIC repository (github.com/andrewmatlock/postselected-work-statistics) BEFORE submission, same as the primary registration.",
+  "no_post_hoc_changes": "Any deviation from this plan is exploratory and must be labelled so."
+}
